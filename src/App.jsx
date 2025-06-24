@@ -74,7 +74,7 @@ const goToToday = () => {
             <ul className="popup-event-list">
               {selectedEvents.map((event, index) => (
                 <li key={index}>
-                  <strong>{event.title}</strong> - {event.time} ({event.duration})
+                  <strong>{event.title}</strong> - {event.startTime} to {event.endTime}
                 </li>
               ))}
             </ul>

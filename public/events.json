@@ -1,51 +1,30 @@
 [
   {
-    "title": "Team Meeting",
-    "date": "2025-01-15",
-    "time": "09:00",
-    "duration": "1h"
-  },
-  {
-    "title": "Project Review",
-    "date": "2025-01-15",
-    "time": "09:30",
-    "duration": "1h"
-  },
-  {
-    "title": "Client Call",
-    "date": "2025-01-16",
-    "time": "14:00",
-    "duration": "30m"
-  },
-  {
     "title": "Client Call",
     "date": "2025-06-16",
-    "time": "14:00",
-    "duration": "30m"
-  },
-  {
-    "title": "Client Call",
-    "date": "2025-06-16",
-    "time": "14:00",
-    "duration": "30m"
+    "startTime": "14:00",
+    "endTime": "14:30",
+    "color": "#f6be23"
   },
   {
     "title": "Team Outing",
     "date": "2025-06-16",
-    "time": "19:00",
-    "duration": "2hr"
+    "startTime": "19:00",
+    "endTime": "21:00",
+    "color": "#42a5f5"
   },
   {
     "title": "Client Call",
     "date": "2025-02-16",
-    "time": "14:00",
-    "duration": "30m"
+    "startTime": "14:00",
+    "endTime": "14:30",
+    "color": "#f6501e"
   },
   {
     "title": "Client Call",
     "date": "2025-02-16",
-    "time": "14:00",
-    "duration": "30m"
+    "startTime": "14:00",
+    "endTime": "14:30",
+    "color": "#f44336"
   }
-  
 ]

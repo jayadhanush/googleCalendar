@@ -46,9 +46,26 @@ while (day.isBefore(endDay, 'day')) {
       {calendar.map((week, i) => (
         <div key={i} className="week-row">
           {week.map(day => {
-            const dayEvents = events.filter(
-              e => e.date === day.format('YYYY-MM-DD')
-            );
+            let dayEvents = events
+              .filter(e => e.date === day.format('YYYY-MM-DD'))
+              .map(e => ({
+                ...e,
+                conflict: false,
+              }));
+
+            // Sort events by startTime
+            dayEvents.sort((a, b) => a.startTime.localeCompare(b.startTime));
+
+            // Mark conflicts
+            for (let i = 0; i < dayEvents.length - 1; i++) {
+              const a = dayEvents[i];
+              const b = dayEvents[i + 1];
+              if (a.endTime > b.startTime) {
+                a.conflict = true;
+                b.conflict = true;
+              }
+            }
+
             return (
               <div
                 key={day}
