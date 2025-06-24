@@ -39,9 +39,10 @@ function CalendarGrid({ currentDate, events }) {
               <div
                 key={day}
                 className={`day-cell ${
-                  day.isSame(today, 'day') ? 'today' : ''
-                }`}
-              >
+                    day.isSame(today, 'day') ? 'today' : ''
+                } ${day.month() !== currentDate.month() ? 'not-current-month' : ''}`}
+            >
+
                 <div className="date-number">{day.date()}</div>
                 {dayEvents.map((event, index) => (
                   <EventCard key={index} event={event} />
