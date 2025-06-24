@@ -8,19 +8,33 @@ function CalendarGrid({ currentDate, events, openEventPopup }) {
   const today = dayjs();
   const calendar = [];
 
-  let day = startDay.clone();
+let day = startDay.clone();
 
-  while (day.isBefore(endDay, 'day')) {
-    calendar.push(
-      Array(7)
-        .fill(0)
-        .map(() => {
-          const d = day.clone();
-          day = day.add(1, 'day');
-          return d;
-        })
-    );
+while (day.isBefore(endDay, 'day')) {
+  const week = [];
+
+  for (let i = 0; i < 7; i++) {
+    week.push(day.clone());
+    day = day.add(1, 'day');
   }
+
+  calendar.push(week);
+}
+
+  const isSecondOrFourthSaturday = (date) => {
+  if (date.day() !== 6) return false; // not Saturday
+  const firstDayOfMonth = date.startOf('month');
+  let saturdayCount = 0;
+
+  for (let d = firstDayOfMonth.clone(); d.isBefore(date); d = d.add(1, 'day')) {
+    if (d.day() === 6) {
+      saturdayCount++;
+    }
+  }
+
+  return saturdayCount === 1 || saturdayCount === 3; // 2nd or 4th Saturday
+};
+
 
   return (
     <div className="calendar-grid">
@@ -38,10 +52,14 @@ function CalendarGrid({ currentDate, events, openEventPopup }) {
             return (
               <div
                 key={day}
-                className={`day-cell ${
-                    day.isSame(today, 'day') ? 'today' : ''
-                } ${day.month() !== currentDate.month() ? 'not-current-month' : ''}`}
-            >
+                className={`day-cell
+                  ${day.isSame(today, 'day') ? 'today' : ''}
+                  ${day.month() !== currentDate.month() ? 'not-current-month' : ''}
+                  ${day.day() === 0 && day.month() === currentDate.month() ? 'sunday' : ''}
+                  ${day.day() === 6 && isSecondOrFourthSaturday(day) ? 'alt-saturday' : ''}
+                `}
+              >
+
 
                 <div className="date-number">{day.date()}</div>
                 {dayEvents.length > 0 && (

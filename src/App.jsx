@@ -21,9 +21,25 @@ function App() {
   }, []);
 
   // 👇 Navigation logic
-  const prevMonth = () => setCurrentDate(currentDate.subtract(1, 'month'));
-  const nextMonth = () => setCurrentDate(currentDate.add(1, 'month'));
-  const goToToday = () => setCurrentDate(dayjs());
+const prevMonth = () => {
+  const newDate = currentDate.clone().subtract(1, 'month');
+  console.log("Prev:", newDate.format('MMMM YYYY'));
+  setCurrentDate(newDate);
+};
+
+const nextMonth = () => {
+  const newDate = currentDate.clone().add(1, 'month');
+  console.log("Next:", newDate.format('MMMM YYYY'));
+  setCurrentDate(newDate);
+};
+
+const goToToday = () => {
+  const newDate = dayjs();
+  console.log("Today:", newDate.format('MMMM YYYY'));
+  setCurrentDate(newDate);
+};
+
+
 
   // 👇 Open and close popup logic
   const openEventPopup = (events, title) => {
@@ -37,6 +53,7 @@ function App() {
   };
 
   return (
+
     <div className="calendar-container">
       <CalendarHeader
         currentDate={currentDate}
@@ -50,7 +67,6 @@ function App() {
         openEventPopup={openEventPopup} 
       />
 
-      {/* ✅ Popup goes here */}
       {showPopup && (
         <div className="popup-overlay" onClick={closeEventPopup}>
           <div className="popup" onClick={(e) => e.stopPropagation()}>
@@ -68,6 +84,7 @@ function App() {
       )}
     </div>
   );
+  
 }
 
 export default App;
