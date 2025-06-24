@@ -8,16 +8,33 @@ function App() {
   const [currentDate, setCurrentDate] = useState(dayjs());
   const [events, setEvents] = useState([]);
 
+  // 👇 Modal popup state
+  const [selectedEvents, setSelectedEvents] = useState([]);
+  const [popupTitle, setPopupTitle] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+
+  // 👇 Load events from static JSON
   useEffect(() => {
     fetch('/events.json')
       .then(res => res.json())
       .then(data => setEvents(data));
   }, []);
 
+  // 👇 Navigation logic
   const prevMonth = () => setCurrentDate(currentDate.subtract(1, 'month'));
   const nextMonth = () => setCurrentDate(currentDate.add(1, 'month'));
-
   const goToToday = () => setCurrentDate(dayjs());
+
+  // 👇 Open and close popup logic
+  const openEventPopup = (events, title) => {
+    setSelectedEvents(events);
+    setPopupTitle(title);
+    setShowPopup(true);
+  };
+
+  const closeEventPopup = () => {
+    setShowPopup(false);
+  };
 
   return (
     <div className="calendar-container">
@@ -25,9 +42,30 @@ function App() {
         currentDate={currentDate}
         onPrev={prevMonth}
         onNext={nextMonth}
-        onToday={goToToday} 
+        onToday={goToToday}
       />
-      <CalendarGrid currentDate={currentDate} events={events} />
+      <CalendarGrid
+        currentDate={currentDate}
+        events={events}
+        openEventPopup={openEventPopup} 
+      />
+
+      {/* ✅ Popup goes here */}
+      {showPopup && (
+        <div className="popup-overlay" onClick={closeEventPopup}>
+          <div className="popup" onClick={(e) => e.stopPropagation()}>
+            <h3>Events on {popupTitle}</h3>
+            <ul className="popup-event-list">
+              {selectedEvents.map((event, index) => (
+                <li key={index}>
+                  <strong>{event.title}</strong> - {event.time} ({event.duration})
+                </li>
+              ))}
+            </ul>
+            <button className="close-popup" onClick={closeEventPopup}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

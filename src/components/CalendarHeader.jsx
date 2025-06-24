@@ -1,10 +1,14 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import calendarIcon from '../assets/calendar-icon.png';
 
 function CalendarHeader({ currentDate, onPrev, onNext, onToday }) {
   return (
     <div className="calendar-header">
-      <h2>Calendar</h2>
+      <div className="calendar-title">
+        <img src={calendarIcon} alt="calendar icon" className="calendar-icon" />
+        <h2>Calendar</h2>
+    </div>
       <div className="calendar-controls">
         <button onClick={onPrev}>&lt;</button>
         <span>{currentDate.format('MMMM YYYY')}</span>

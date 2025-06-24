@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import EventCard from './EventCard';
 
-function CalendarGrid({ currentDate, events }) {
+function CalendarGrid({ currentDate, events, openEventPopup }) {
   const startDay = currentDate.startOf('month').startOf('week');
   const endDay = currentDate.endOf('month').endOf('week');
   const today = dayjs();
@@ -44,9 +44,19 @@ function CalendarGrid({ currentDate, events }) {
             >
 
                 <div className="date-number">{day.date()}</div>
-                {dayEvents.map((event, index) => (
-                  <EventCard key={index} event={event} />
-                ))}
+                {dayEvents.length > 0 && (
+  <>
+                    <EventCard event={dayEvents[0]} />
+                    {dayEvents.length > 1 && (
+                    <button
+                        className="more-events-btn"
+                        onClick={() => openEventPopup(dayEvents, day.format('DD MMM YYYY'))}
+                    >
+                        +{dayEvents.length - 1} more
+                    </button>
+                    )}
+                </>
+                )}
               </div>
             );
           })}
