@@ -134,10 +134,12 @@ html, body {
 .today-button {
   margin-left: 12px;
   padding: 8px 20px;
-  background: linear-gradient(135deg, #c5f895, #80f712);
-  color: white;
-  font-weight: 600;
+   color: #fff;
+  background: linear-gradient(135deg, #7ff0ff, #36a2eb);
+      
+  font-weight: bold; 
   font-size: 0.95rem;
+  
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -146,7 +148,7 @@ html, body {
 }
 
 .today-button:hover {
-  background: linear-gradient(135deg, #79df49, #6cc704);
+  background: linear-gradient(135deg, #75bdec, #1d9ef3);
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(33, 150, 243, 0.4);
 }
@@ -326,3 +328,87 @@ html, body {
   }
 }
 
+.calendar-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #fef9f9;
+  border-right: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
+  font-size: 1.1rem;
+  color: #d32f2f;
+  margin-bottom: 1rem;
+}
+
+.conflict-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.conflict-item {
+  background-color: #fff3f3;
+  border-left: 4px solid #d32f2f;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #b71c1c;
+}
+.calendar-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 300px;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  border-right: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  overflow-y: auto;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.event-list, .conflict-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.event-item {
+  background: #f3f6ff;
+  border-left: 4px solid #4a90e2;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #1a237e;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.conflict-item {
+  background: #ffeaea;
+  border-left: 4px solid #d32f2f;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #b71c1c;
+}
