@@ -11,13 +11,13 @@ function CalendarHeader({ currentDate, onPrev, onNext, onToday }) {
      </div>
       <div className="calendar-controls">
       <button className="nav-btn" onClick={onPrev}>
-        <span>&lArr;</span>
+        <span>&lt;</span>
       </button>
 
       <span className="month-year">{currentDate.format('MMMM YYYY')}</span>
 
       <button className="nav-btn" onClick={onNext}>
-        <span>&rArr;</span>
+        <span>&gt;</span>
       </button>
 
     <button onClick={onToday} className="today-button">Today</button>
